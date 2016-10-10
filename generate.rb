@@ -7,6 +7,7 @@ puts "Listening on port 2000"
 
 loop {
   Thread.start(server.accept) do |client|
+    puts "client connected"
     loop {
       params = {
         timestamp: (Time.now.to_f * 1000).to_i, #milliseconds since epoch
@@ -23,8 +24,7 @@ loop {
       }
       
       client.puts params.to_json
-      sleep 0.1
-      
+      sleep 0.1      
     }
   end
 }
